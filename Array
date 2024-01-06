@@ -1,0 +1,171 @@
+import java.util.Scanner;
+
+public class Text_Array2 {
+    public static void nprint(int B1[]) {
+        for (int i = 0; i < B1.length; i++) {
+            System.out.print(B1[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void insertValue(int B1[]) {
+        Scanner scan = new Scanner(System.in);
+        for (int i = 0; i < B1.length; i++) {
+            System.out.print("Enter value number of array : " + (i + 1) + " ");
+            B1[i] = scan.nextInt();
+        }
+    }
+
+    public static int arraysum(int B1[]) {
+        int sum = 0;
+        for (int i = 0; i < B1.length; i++) {
+            sum += B1[i];
+        }
+        return sum;
+    }
+
+    public static double calculateAverage(int B1[]) {
+        int sum = 0;
+        for (int i = 0; i < B1.length; i++) {
+            sum += B1[i];
+        }
+        return (double) sum / B1.length;
+    }
+
+    public static int Max(int[] Array) {
+        if (Array.length == 0) {
+            throw new IllegalArgumentException("ว่างเปล่า");
+        }
+        int Max = Array[0];
+        for (int i = 0; i < Array.length; i++) {
+            if (Array[i] > Max) {
+                Max = Array[i];
+            }
+        }
+        return Max;
+    }
+
+    public static int Min(int[] Array) {
+        if (Array.length == 0) {
+            throw new IllegalArgumentException("ว่างเปล่า");
+        }
+        int Min = Array[0];
+        for (int i = 0; i < Array.length; i++) {
+            if (Array[i] < Min) {
+                Min = Array[i];
+            }
+        }
+        return Min;
+    }
+
+    public static int Maxsecon(int[] Array) {
+        if (Array.length < 2) {
+            throw new IllegalArgumentException("อาร์เรย์ควรมีอย่างน้อยสององค์ประกอบ");
+        }
+        int Max = Integer.MIN_VALUE;
+        int maxsecon = Integer.MIN_VALUE;
+        for (int i = 0; i < Array.length; i++) {
+            if (Array[i] > Max) {
+                maxsecon = Max;
+                Max = Array[i];
+            } else if (Array[i] > maxsecon && Array[i] != Max) {
+                maxsecon = Array[i];
+            }
+        }
+        if (maxsecon == Integer.MIN_VALUE) {
+            throw new IllegalArgumentException("ไม่พบองค์ประกอบสูงสุดที่สอง");
+        }
+        return maxsecon;
+    }
+
+    public static int Minsecond(int[] Array) {
+        if (Array.length < 2) {
+            throw new IllegalArgumentException("อาร์เรย์ควรมีอย่างน้อยสององค์ประกอบ");
+        }
+        int Min = Integer.MAX_VALUE;
+        int Minsecond = Integer.MAX_VALUE;
+        for (int i = 0; i < Array.length; i++) {
+            if (Array[i] < Min) {
+                Minsecond = Min;
+                Min = Array[i];
+            } else if (Array[i] < Minsecond && Array[i] != Min) {
+                Minsecond = Array[i];
+            }
+        }
+        if (Minsecond == Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("ไม่พบองค์ประกอบสูงสุดที่สอง");
+        }
+        return Minsecond;
+    }
+
+    public static void asdSorting(int B2[]) {
+        int num = B2.length;
+        for (int i = 0; i < num - 1; i++) {
+            for (int j = 0; j < num - i - 1; j++) {
+                if (B2[j] > B2[j + 1]) {
+                    int temp = B2[j];
+                    B2[j] = B2[j + 1];
+                    B2[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void deSorting(int B2[]) {
+        int num = B2.length;
+        for (int i = 0; i < num - 1; i++) {
+            for (int f = 0; f < num - i - 1; f++) {
+                if (B2[f] < B2[f + 1]) {
+                    int temp = B2[f];
+                    B2[f] = B2[f + 1];
+                    B2[f + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("ป้อนขนาดของอาร์เรย์ : ");
+        int number = scan.nextInt();
+        int[] B1 = new int[number];
+        System.out.println("ก่อนใส่ค่า = ");
+        nprint(B1);
+
+        insertValue(B1);
+        System.out.print("หลังจากใส่ค่าแล้ว :");
+        nprint(B1);
+
+        int sum = arraysum(B1);
+        System.out.println("Sum ขององค์ประกอบอาร์เรย์ = " + sum);
+
+        double avg = calculateAverage(B1);
+        System.out.println("ค่าเฉลี่ยขององค์ประกอบอาร์เรย์ =" + avg);
+
+        int Max = Max(B1);
+        System.out.println("ค่าสูงสุดในอาร์เรย์ = " + Max);
+
+        int Min = Min(B1);
+        System.out.println("ค่าต่ำสุดในอาร์เรย์ = " + Min);
+        try {
+
+            int maxsecon = Maxsecon(B1);
+            System.out.println("ค่าสูงสุดที่สองในอาร์เรย์ : " + maxsecon);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+
+            int Minsecond = Minsecond(B1);
+            System.out.println("ค่าต่ำสุดที่สองในอาร์เรย์ : " + Minsecond);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        asdSorting(B1);
+        System.out.print("asdSorting : ");
+        nprint(B1);
+        deSorting(B1);
+        System.out.println("deSorting :");
+        nprint(B1);
+    }
+}
